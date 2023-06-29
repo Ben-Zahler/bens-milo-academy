@@ -29,6 +29,30 @@ export const [setLibs, getLibs] = (() => {
   ];
 })();
 
+export function decorateButtons(el, size) {
+  const buttons = el.querySelectorAll('em a, strong a, p > a strong');
+  if (buttons.length === 0) return;
+  const buttonTypeMap = { STRONG: 'blue', EM: 'outline', A: 'blue' };
+  buttons.forEach((button) => {
+    const parent = button.parentElement;
+    const buttonType = buttonTypeMap[parent.nodeName] || 'outline';
+    if (button.nodeName === 'STRONG') {
+      parent.classList.add('con-button', buttonType);
+      if (size) parent.classList.add(size); /* button-l, button-xl */
+    } else {
+      button.classList.add('con-button', buttonType);
+      if (size) button.classList.add(size); /* button-l, button-xl */
+      parent.insertAdjacentElement('afterend', button);
+      parent.remove();
+    }
+  });
+  const actionArea = buttons[0].closest('p, div');
+  if (actionArea) {
+    actionArea.classList.add('action-area');
+    actionArea.nextElementSibling?.classList.add('supplemental-text', 'body-xl');
+  }
+}
+
 /*
  * ------------------------------------------------------------
  * Edit above at your own risk.
@@ -36,7 +60,3 @@ export const [setLibs, getLibs] = (() => {
  * Note: This file should have no self-invoking functions.
  * ------------------------------------------------------------
  */
-
-export async function useMiloSample() {
-  const { createTag } = await import(`${getLibs()}/utils/utils.js`);
-}
