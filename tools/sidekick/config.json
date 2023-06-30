@@ -15,6 +15,16 @@
       ]
     },
     {
+      "title": "Academy",
+      "id": "academy",
+      "environments": [
+        "dev",
+        "preview",
+        "live"
+      ],
+      "event": "academy"
+    },
+    {
       "id": "tools",
       "title": "Tools",
       "isContainer": true

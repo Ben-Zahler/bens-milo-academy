@@ -60,3 +60,17 @@ export function decorateButtons(el, size) {
  * Note: This file should have no self-invoking functions.
  * ------------------------------------------------------------
  */
+
+export function initSidekick() {
+  const initPlugins = async () => {
+    const { default: init } = await import('./sidekick.js');
+    init();
+  };
+  if (document.querySelector('helix-sidekick')) {
+    initPlugins();
+  } else {
+    document.addEventListener('sidekick-ready', () => {
+      initPlugins();
+    });
+  }
+}
