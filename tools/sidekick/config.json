@@ -15,13 +15,8 @@
       ]
     },
     {
-      "title": "Academy",
+      "title": "Acodemy",
       "id": "academy",
-      "environments": [
-        "dev",
-        "preview",
-        "live"
-      ],
       "event": "academy"
     },
     {
