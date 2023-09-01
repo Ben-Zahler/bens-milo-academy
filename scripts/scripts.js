@@ -10,8 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
-
 import { setLibs, initSidekick } from './utils.js';
+
+window.adobeid = {
+  env: '//ims-na1-stg1.adobelogin.com',
+  environment: 'stg1',
+  jumpToken: { api: '/ims/jumptoken/v1' },
+  client_id: 'DocumentCloud1',
+  scope: 'AdobeID,openid,creative_cloud,gnav,sao.cce_private,additional_info.roles,read_organizations',
+  uses_redirect_mode: true,
+  locale: 'en_US',
+  uses_modal_mode: false,
+  api_parameters: { authorize: { state: { ac: '' } } },
+  redirect_uri: 'https:\/\/www.adobe.com\/#ref_dc' || documentsLink,
+  autoValidateToken: true,
+};
+
+const scriptEle = document.createElement('script');
+
+scriptEle.setAttribute('src', 'https://auth-stg1.services.adobe.com/imslib/imslib.min.js');
+scriptEle.setAttribute('type', 'text/javascript');
+
+document.body.appendChild(scriptEle);
+console.log('script loaded');
 
 // Add project-wide style path here.
 const STYLES = '';
